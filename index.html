@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+    <style>
+        form{
+            border: none;
+            border-radius: 20px;
+            background-color: gray;
+            opacity: 60%;
+            width: 500px;
+            height: auto;
+            margin: auto;
+            margin-top: 60px;
+            padding: 10px;
+        }
+        input{
+            border: none;
+            border-radius: 10px;
+            width: 400px;
+            height: 40px;
+            padding: 10px;
+            margin: 5px;
+        }
+        h1{
+            color: white;
+            text-align: center;
+        }
+        button{
+            background-color: blue;
+            width: 100px;
+            height: 30px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: green;
+        }
+    </style>
+</head>
+<body style="background-color: black;">
+    <h1>Register</h1>
+    <form action="" name="new" onsubmit="return validateForm()"><center>
+        <input type="text" name="uname" placeholder="Name"><br>
+        <input type="number" name="phone" placeholder="Phone Number"><br>
+        <input type="email" name="mail" placeholder="Email"><br>
+        <input type="password" name="pass" placeholder="Password"><br>
+        <button type="submit">Submit</button></center>
+    </form>
+<script>
+    function validateForm() {
+        let uname = document.forms["new"]["uname"].value;
+        let phone = document.forms["new"]["phone"].value;
+        let mail = document.forms["new"]["mail"].value;
+        let pass = document.forms["new"]["pass"].value;
+        if (uname == "" || phone == "" || mail == "" || pass == "") {
+            alert("All fields must be filled out");
+            return false;
+        }
+
+        const phonePattern = /^\d{10}$/;
+        if (phonePattern.test(phone) == false) {
+            alert("Enter a valid phone number");
+        }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(emailPattern.test(mail) == false){
+            alert("Enter a valid email")
+        }
+
+        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if(passwordPattern(pass) == false){
+            alert("Password must be at least 8 characters long and include uppercase and lowercase letters, a number, and a special character");
+        }
+    }
+</script>
+</body>
+</html>
